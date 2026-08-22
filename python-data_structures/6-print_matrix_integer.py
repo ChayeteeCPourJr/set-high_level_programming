@@ -14,5 +14,5 @@ def print_matrix_integer(matrix=[[]]):
         for idx in range(len(row)):
             if idx > 0:
                 line += " "
-            line += "{}".format(row[idx])
+            line += "{:d}".format(row[idx])
         print(line)
