@@ -1,3 +1,4 @@
+#!/bin/urs/python3
 class Rectangle:
     number_of_instances = 0
     print_symbol = "#"
