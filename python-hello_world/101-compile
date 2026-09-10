@@ -1,3 +1,8 @@
-#!/bin/bash
-echo "Compiling $PYFILE ..."
-python3 -c "import py_compile; py_compile.compile('$PYFILE')"
+#!/usr/bin/python3
+"""Compiles a Python script file into $PYFILEc"""
+import os
+import py_compile
+
+pyfile = os.environ.get("PYFILE")
+print("Compiling {} ...".format(pyfile))
+py_compile.compile(pyfile, cfile=pyfile + "c")
