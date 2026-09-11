@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-from sys import argv, exit
+"""Uses calculator_1's functions to handle a basic calculation
+given as command-line arguments: <a> <operator> <b>"""
+import sys
 from calculator_1 import add, sub, mul, div
 
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Usage: {} <a> <operator> <b>".format(sys.argv[0]))
+        sys.exit(1)
 
-def main():
-    if len(argv) != 4:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        exit(1)
-
-    a = int(argv[1])
-    operator = argv[2]
-    b = int(argv[3])
+    a = int(sys.argv[1])
+    op = sys.argv[2]
+    b = int(sys.argv[3])
 
     operators = {
         "+": add,
@@ -19,13 +20,8 @@ def main():
         "/": div,
     }
 
-    if operator not in operators:
+    if op not in operators:
         print("Unknown operator. Available operators: +, -, * and /")
-        exit(1)
+        sys.exit(1)
 
-    result = operators[operator](a, b)
-    print("{} {} {} = {}".format(a, operator, b, result))
-
-
-if __name__ == "__main__":
-    main()
+    print("{} {} {} = {}".format(a, op, b, operators[op](a, b)))
