@@ -1,0 +1,106 @@
+ The ``1-my_list`` module
+========================
+
+Defines ``MyList``, a class that inherits from ``list`` and adds a
+``print_sorted()`` method.
+
+Import the class
+-----------------
+::
+
+    >>> MyList = __import__('1-my_list').MyList
+
+Check instantiation
+--------------------
+::
+
+    >>> my_list = MyList()
+    >>> my_list
+    []
+
+Check it inherits from list
+----------------------------
+::
+
+    >>> isinstance(my_list, list)
+    True
+    >>> issubclass(MyList, list)
+    True
+
+Check __str__ (regular print)
+-------------------------------
+::
+
+    >>> print(my_list)
+    []
+
+Check append()
+---------------
+::
+
+    >>> my_list.append(1)
+    >>> print(my_list)
+    [1]
+
+Check print_sorted() with an already-sorted list
+--------------------------------------------------
+::
+
+    >>> sorted_list = MyList()
+    >>> sorted_list.append(1)
+    >>> sorted_list.append(2)
+    >>> sorted_list.append(3)
+    >>> print(sorted_list)
+    [1, 2, 3]
+    >>> sorted_list.print_sorted()
+    [1, 2, 3]
+
+Check print_sorted() with a not-sorted list
+-----------------------------------------------
+::
+
+    >>> my_list = MyList()
+    >>> my_list.append(1)
+    >>> my_list.append(4)
+    >>> my_list.append(2)
+    >>> my_list.append(3)
+    >>> my_list.append(5)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+
+Check print_sorted() with negative numbers
+---------------------------------------------
+::
+
+    >>> neg_list = MyList()
+    >>> neg_list.append(-5)
+    >>> neg_list.append(3)
+    >>> neg_list.append(-1)
+    >>> neg_list.append(0)
+    >>> print(neg_list)
+    [-5, 3, -1, 0]
+    >>> neg_list.print_sorted()
+    [-5, -1, 0, 3]
+
+Check print_sorted() with an empty list
+-------------------------------------------
+::
+
+    >>> empty_list = MyList()
+    >>> empty_list.print_sorted()
+    []
+
+Check print_sorted() returns a new list (original is not mutated)
+----------------------------------------------------------------------
+::
+
+    >>> unsorted = MyList()
+    >>> unsorted.append(5)
+    >>> unsorted.append(1)
+    >>> unsorted.append(4)
+    >>> unsorted.print_sorted()
+    [1, 4, 5]
+    >>> print(unsorted)
+    [5, 1, 4]
