@@ -1,0 +1,106 @@
+The ``101-lazy_matrix_mul`` module
+====================================
+
+Import the function:
+
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+NumPy's exception messages differ between versions, so a small helper
+reports the kind of exception raised instead of its exact message:
+
+    >>> def error_kind(m_a, m_b):
+    ...     try:
+    ...         lazy_matrix_mul(m_a, m_b)
+    ...     except TypeError:
+    ...         return "TypeError"
+    ...     except ValueError:
+    ...         return "ValueError"
+    ...     return "no error"
+
+Multiplying two square matrices:
+
+    >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+    [[ 7 10]
+     [15 22]]
+
+Multiplying a row matrix by a matrix:
+
+    >>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+    [[13 16]]
+
+Multiplying matrices of floats:
+
+    >>> lazy_matrix_mul([[1.5, 2]], [[2], [3]]).tolist()
+    [[9.0]]
+
+Matrices that can't be multiplied raise a ValueError:
+
+    >>> lazy_matrix_mul([[1, 2]], [[1, 2]])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: shapes (1,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0)
+
+m_a is not a list:
+
+    >>> error_kind("School", [[1, 2]])
+    'TypeError'
+
+m_b is not a list:
+
+    >>> error_kind([[1, 2]], "School")
+    'TypeError'
+
+m_a is a list, but not a list of lists:
+
+    >>> error_kind([1, 2], [[1, 2]])
+    'ValueError'
+
+m_b is a list, but not a list of lists:
+
+    >>> error_kind([[1, 2]], [1, 2, 3])
+    'ValueError'
+
+m_a is empty:
+
+    >>> error_kind([], [[1, 2]])
+    'ValueError'
+
+m_a is [[]]:
+
+    >>> error_kind([[]], [[1, 2]])
+    'ValueError'
+
+m_b is empty:
+
+    >>> error_kind([[1, 2]], [])
+    'ValueError'
+
+m_b is [[]]:
+
+    >>> error_kind([[1, 2]], [[]])
+    'ValueError'
+
+m_a contains something that is not an integer or a float:
+
+    >>> error_kind([[1, "a"]], [[1], [2]])
+    'TypeError'
+
+m_b contains something that is not an integer or a float:
+
+    >>> error_kind([[1, 2]], [[1], ["a"]])
+    'TypeError'
+
+m_a is not a rectangle (an error is raised, whose kind depends on the
+NumPy version):
+
+    >>> error_kind([[1, 2], [3]], [[1], [2]]) in ("TypeError", "ValueError")
+    True
+
+m_b is not a rectangle:
+
+    >>> error_kind([[1, 2]], [[1, 2], [3]]) in ("TypeError", "ValueError")
+    True
+
+Valid matrices raise nothing:
+
+    >>> error_kind([[1, 2], [3, 4]], [[5, 6], [7, 8]])
+    'no error'
