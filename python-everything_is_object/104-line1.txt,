@@ -1,0 +1,5 @@
+echo "1" > 104-line1.txt
+echo "1" > 104-line2.txt
+echo "Yes" > 104-line3.txt
+echo "Yes" > 104-line4.txt
+echo "1" > 104-line5.txt

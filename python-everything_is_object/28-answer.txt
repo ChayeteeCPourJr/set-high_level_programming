@@ -1,0 +1,1 @@
+echo "Yes" > 28-answer.txt

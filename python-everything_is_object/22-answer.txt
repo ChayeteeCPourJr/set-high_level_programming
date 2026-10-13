@@ -1,0 +1,1 @@
+echo "No" > 22-answer.txt

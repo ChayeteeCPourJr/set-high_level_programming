@@ -1,0 +1,1 @@
+echo "True" > 6-answer.txt
