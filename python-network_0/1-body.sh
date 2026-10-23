@@ -1,3 +1,3 @@
 #!/bin/bash
-# Display the body returned by a URL, following redirects
+# Display the response body while following redirects
 curl -sL "$1"
